@@ -2,9 +2,10 @@ import { useState, useCallback, useEffect } from 'react';
 import { View } from 'react-native';
 import { useMyContextController, login } from '../context';
 import { Button, IconButton, Text, TextInput } from 'react-native-paper';
-import Icon from "react-native-vector-icons/AntDesign"
+import Icon from "react-native-vector-icons/AntDesign";
+import firestore from '@react-native-firebase/firestore';
 
- export default LoginScreen = ()=>{
+ export default LoginScreen = ({navigation})=>{
   const [email, setEmail] = useState("");
   const [password, setPassword] =useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +19,7 @@ import Icon from "react-native-vector-icons/AntDesign"
     // console.log("sfs",userLogin)
   const onSubmit = () => {
     login(dispatch, email, password);
+    navigation.navigate("Home");
 }
 return (
       <View style ={{flex:1, justifyContent:"center", alignContent:"center"}}>

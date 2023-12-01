@@ -1,4 +1,4 @@
-import { View, Text } from "react-native"
+import { View, Text } from "react-native";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Services from "./Services";
 //import HomeScreen from "../screens/HomeScreen";
