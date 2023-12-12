@@ -8,6 +8,7 @@ import LoginScreen from "./LoginScreen";
 import ServiceDetail from "./ServiceDetail";
 import Services from "./Services";
 import firestore from '@react-native-firebase/firestore';
+import AddServices from "../AddService";
 
 const Stack = createStackNavigator();
 export default Router = () => {
@@ -16,9 +17,10 @@ export default Router = () => {
     console.log(userLogin)
     return (
         <Stack.Navigator independent={true}>
-            {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Services" component={Services} />
+            <Stack.Screen name="AddServices" component={AddServices} />
         </Stack.Navigator>
         
     )

@@ -39,12 +39,6 @@ return (
           secureTextEntry={!showPassword}
         />
         <Button mode="contained" onPress={onSubmit}>Đăng Nhập</Button>
-        {/* <Button title="Login" onPress={handleLogin} />
-        <View style={{alignItems:"center", justifyContent:'center', padding:10}}>
-              <Pressable onPress={()=> navigation.navigate("Register")}>
-                  <Text>Sign up</Text>
-              </Pressable>
-        </View> */}
       </View>
     );
   }
