@@ -27,6 +27,7 @@ import '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import AddServices from './AddService';
+import EditServices from './screens/EditServices';
 
 
 export default App = () => {
@@ -63,18 +64,3 @@ export default App = () => {
 
   )
 }
-// const Stack = createStackNavigator();
-// const App = () => {
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator initialRouteName="Login">
-//         <Stack.Screen name="Register" component={RegisterScreen} />
-//         <Stack.Screen name="Login" component={LoginScreen} />
-//         <Stack.Screen name="Welcome" component={WelcomeScreen} />
-//       </Stack.Navigator>
-//     </NavigationContainer>
-
-//   );
-// };
-
-// export default App;

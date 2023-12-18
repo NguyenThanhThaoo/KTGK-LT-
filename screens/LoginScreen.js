@@ -38,7 +38,7 @@ return (
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={!showPassword}
         />
-        <Button mode="contained" onPress={onSubmit}>Đăng Nhập</Button>
+        <Button mode="contained" onPress={onSubmit} >Đăng Nhập</Button>
       </View>
     );
   }
