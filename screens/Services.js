@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Pressable, StyleSheet, Alert } from 'react-native';
+import { View, Text, FlatList, Pressable, StyleSheet, Alert, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { getFirestore, collection, query, onSnapshot } from '@react-native-firebase/firestore';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,9 +17,15 @@ const Services = ({ navigation }) => {
         const servicesRef = collection(db, 'services');
 
         const unsubscribe = onSnapshot(query(servicesRef), (querySnapshot) => {
+            // const servicesList = [];
+            // querySnapshot.forEach((doc) => {
+            //     servicesList.push({ ...doc.data(), id: doc.id });
+            // });
+            // setServices(servicesList);
             const servicesList = [];
             querySnapshot.forEach((doc) => {
-                servicesList.push({ ...doc.data(), id: doc.id });
+                const serviceData = { ...doc.data(), id: doc.id };
+                servicesList.push(serviceData);
             });
             setServices(servicesList);
 
@@ -27,10 +33,14 @@ const Services = ({ navigation }) => {
 
         return () => unsubscribe();
     }, [db]);
+
+
+
     const handleDetails = (services) => {
         navigation.navigate('ServiceDetail', {
             name: services.name,
             price: services.price,
+            imageUrl: services.imageUrl
         });
     };
 
@@ -60,7 +70,6 @@ const Services = ({ navigation }) => {
         );
     };
     const handleEdit = (itemId) => {
-        // Chuyển hướng đến màn hình chỉnh sửa dịch vụ, truyền ID của dịch vụ cần chỉnh sửa
         navigation.navigate('EditServices', { itemId });
     };
 
@@ -78,7 +87,7 @@ const Services = ({ navigation }) => {
                 </TouchableOpacity>
             </View>
             <ScrollView>
-                <FlatList
+                {/* <FlatList
                     style={{ marginBottom: 150 }}
                     data={Services}
                     keyExtractor={(item) => item.id}
@@ -107,7 +116,46 @@ const Services = ({ navigation }) => {
 
                         </View>
                     )}
+                /> */}
+
+
+
+
+
+                <FlatList
+                    style={{ marginBottom: 150 }}
+                    data={Services}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => (
+                        <View style={{ flexDirection: 'row', margin: 5 }}>
+                            <View style={styles.item}>
+                                <TouchableOpacity onPress={() => handleDetails(item)}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                        <View>
+                                            <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#FF6666' }}>{item.name}</Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'black' }}>{item.price + "đ"}</Text>
+                                        </View>
+                                        {item.image && <Image source={{ uri: item.image }} style={{ width: 50, height: 50 }} />} 
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <TouchableOpacity onPress={() => handleEdit(item.id)}>
+                                                <Icon name="edit" size={24} color="#6699FF" />
+                                            </TouchableOpacity>
+                                            <TouchableOpacity onPress={() => handleDelete(item.id)}>
+                                                <Icon name="delete" size={24} color="#FF6666" />
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    )}
                 />
+
+
+
+
+
+
 
             </ScrollView>
         </View>
