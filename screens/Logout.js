@@ -2,10 +2,9 @@ import React, { useContext } from 'react';
 import { View, StyleSheet, Text, Alert, Button } from 'react-native';
 import { BackHandler } from 'react-native';
 import auth from '@react-native-firebase/auth';
-import { UserContext } from '../context/UseContext';
+
 
 const Logout = ({ navigation }) => {
-    //let { logoutUser } = useContext(UserContext);
     const handleLogout = async () => {
         try {
             await auth().signOut();

@@ -1,9 +1,9 @@
 import React from "react";
-import 'react-native-gesture-handler';
+//import 'react-native-gesture-handler';
 import { View, Text, StyleSheet } from "react-native";
 import { useMyContextController } from "../context";
 import { createStackNavigator } from "@react-navigation/stack";
-import LoginScreen from "./LoginScreen";
+import LoginScreen from "../screens/LoginScreen";
 import HomeScreen from "./HomeScreen";
 import ServiceDetail from "../screens/ServiceDetail";
 import Services from "./Services";
@@ -15,21 +15,23 @@ import Logout from "../screens/Logout";
 
 
 const Stack = createStackNavigator();
-export default Router = () => {
+const Router = () => {
     // const [controller, dispatch] = useMyContextController();
     // const { userLogin } = controller;
     // console.log(userLogin)
     return (
-        <Stack.Navigator independent={true}>
-            <Stack.Screen name="LoginScreen" component={LoginScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Services" component={Services} />
+        // <Stack.Navigator independent={true}>
+        <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}  />
+            <Stack.Screen name="Home" component={HomeScreen}options={{ headerShown: false }}  />
+            <Stack.Screen name="Services" component={Services}options={{ headerShown: false }}  />
             <Stack.Screen name="AddServices" component={AddServices} />
             <Stack.Screen name="ServiceDetail" component={ServiceDetail} />
             <Stack.Screen name="EditServices" component={EditServices} />
-            <Stack.Screen name="Logout" component={Logout} />
+            <Stack.Screen name="Logout" component={Logout} options={{ headerShown: false }} />
         </Stack.Navigator>
-        
-    )
-}
+
+    );
+};
+export default Router;
 

@@ -3,7 +3,7 @@ import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
 // import PropTypes from "prop-types";
 // Create MyContext
-const MyContext = createContext();
+export const MyContext = createContext();
 // Setting custom name for the context 
 MyContext.displayName = "MyContextContext";
 // React reducer
@@ -19,7 +19,6 @@ function reducer(state, action) {
 }
 // React context provider
 function MyContextControllerProvider({ children }) {
-    console.log("Test")
     const initialState = {
         userLogin: {
             name: "admin",
@@ -57,8 +56,8 @@ const login = async(dispatch, email, password) => {
                         dispatch({ type: "USER_LOGIN", value });
                     })
         )
-        .catch(e => alert("Sai user vaf password") )
-                }
+        .catch(e => alert("Sai user hoac password") )
+                 }
 
 
 export {
